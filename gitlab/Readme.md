@@ -31,16 +31,12 @@ sudo EXTERNAL_URL="https://gitlab.openkube.io" apt-get install gitlab-ee
 
 Upon installation below are the major directories to find logs, data, configs and more.
 
-
-+----------------------+-------------------------------------+
+|   &nbsp;             | &nbsp;                              |
+|----------------------|-------------------------------------|
 | logs                 | /var/log/gitlab/                    |
-+----------------------+-------------------------------------+
 | configuration        | /etc/gitlab/                        |
-+----------------------+-------------------------------------+
 | binaries             | /opt/gitlab/sv/                     |
-+----------------------+-------------------------------------+
 | data                 |                                     |
-+----------------------+-------------------------------------+
 
 
 **gitlab-ctl** cli is installed as part of installation. The cli can be use to manage gitlab configuration, status and much more.
