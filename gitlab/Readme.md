@@ -121,7 +121,7 @@ gitlab-runner service can be monitored with systemctl
 
 *sudo systectl staus gitlab-runner*
 
-### register your runner
+### Register your runner
 
 Next is to register your runner to run gitlab CI. Below is the interactive one. 
 Copy the token from Gitlab UI -> Admin Area -> Overview -> Runners
