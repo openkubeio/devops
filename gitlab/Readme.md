@@ -5,14 +5,14 @@ Installing gitlab offline is pretty staright forward. Visit the official site fo
 
 
 ### Install the dependent packages
-
+```
 sudo apt-get install -y curl openssh-server ca-certificates tzdata
-
+```
 
 ### Download and add gitlab package repository to the ubuntu
-
-*curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash*
-
+```
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash*
+```
 
 ### Verifying the external LBR
 
@@ -22,9 +22,13 @@ You can also use a your server IP addresss as well. Ensure that external IP is r
 echo "192.172.100.50 gitlab.openkube.io" >> /etc/hosts
 
 
-### Install gitlab-ee with apy package manager
 
+
+### Install gitlab-ee with apy package manager
+```
 sudo EXTERNAL_URL="https://gitlab.openkube.io" apt-get install gitlab-ee
+```
+
 
 
 ### Post install verify
@@ -65,24 +69,24 @@ However it will fail as no ca certificate is attched for cert validation, though
 
 Lets download the ca cert for the app url usinng openssl tool. Below openssl command will print the certs chain and we
 need to copy the cert content and paste in a new file gitlab-ca.crt. 
+```
+cd /etc/gitlab/ssl
 
-*cd /etc/gitlab/ssl*
-
-*openssl s_client -connect gitlab.openkube.io:443 –showcerts*
-
+openssl s_client -connect gitlab.openkube.io:443 –showcerts
+```
 Our ca cert is now ready for ssl cert verification.
 we can attach the ca file gitlab-ca.crt to the curl for cert validation.
-
-*curl https://gitlab.openkube.io --cacert gitlab-ca.crt*
-
+```
+curl https://gitlab.openkube.io --cacert gitlab-ca.crt
+```
 
 we can add the ca cert to server certificate truststore, so curl will try to validate it against the server  truststore
 to find the ca certificate there. 
+```
+mv gitlab-ca.crt   /usr/local/share/ca-certificates/gitlab-ca.crt
 
-*mv gitlab-ca.crt   /usr/local/share/ca-certificates/gitlab-ca.crt*
-
-*update-ca-certificates*
-
+update-ca-certificates*
+```
 
 Now the gitlab-ca.crt is updated to the server truststore, curl to https should work fine.
 
